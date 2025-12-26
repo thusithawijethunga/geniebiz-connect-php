@@ -4,8 +4,8 @@
     "keywords": ["geniebusiness", "genie", "pay", "alipay", "php", "api", "online payments", "card payments"],
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "~6.0",
-        "php": ">= 7.0"
+        "guzzlehttp/guzzle": "^7.2",
+        "php": ">= 8.0"
     },
     "autoload": {
         "psr-4": {
@@ -29,3 +29,4 @@
         "test": "./vendor/bin/phpunit -c ./phpunit.xml ./test --coverage-clover=coverage.xml && ./vendor/bin/phpcs --standard=PSR2 ./src/* && ./vendor/bin/phpstan analyse --level=7 ./src"
     }
 }
+
