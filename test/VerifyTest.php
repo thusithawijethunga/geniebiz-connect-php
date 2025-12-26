@@ -1,5 +1,5 @@
 <?php
-
+// test\VerifyTest.php
 class VerifyTest extends PHPUnit_Framework_TestCase
 {
     public function testValidateSignature()

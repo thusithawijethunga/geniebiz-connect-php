@@ -1,5 +1,5 @@
 <?php
-
+// src\Transactions.php
 namespace GenieBusinessConnect;
 
 use GenieBusinessConnect\Crypt\Signature;
@@ -31,7 +31,7 @@ class Transactions
     public function create(array $json)
     {
         $transaction = (new Transaction())->fromArray($json);
-        if(array_key_exists('validForHours', $json)) {
+        if (array_key_exists('validForHours', $json)) {
             $json['expires'] = $transaction->getExpires();
             unset($json['validForHours']);
         }
@@ -45,7 +45,7 @@ class Transactions
      */
     public function get(string $id)
     {
-        return $this->client->get(self::ENDPOINT.'/'.$id);
+        return $this->client->get(self::ENDPOINT . '/' . $id);
     }
 
     /**

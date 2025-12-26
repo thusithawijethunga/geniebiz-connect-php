@@ -1,4 +1,5 @@
 <?php
+//src\Crypt\Signature.php
 namespace GenieBusinessConnect\Crypt;
 
 use GenieBusinessConnect\Model\Transaction;
@@ -32,9 +33,9 @@ class Signature
      */
     public function sign()
     {
-        $str = 'amount='.$this->transaction->getAmount().
-            '&currency='.$this->transaction->getCurrency().
-            '&apiKey='.$this->apiKey;
+        $str = 'amount=' . $this->transaction->getAmount() .
+            '&currency=' . $this->transaction->getCurrency() .
+            '&apiKey=' . $this->apiKey;
 
         return sha1($str);
     }

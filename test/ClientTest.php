@@ -1,5 +1,5 @@
 <?php
-
+// test\ClientTest.php
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\Psr7\Response;
@@ -23,7 +23,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
             $client::SANDBOX_ENDPOINT,
             PHPUnit_Framework_Assert::readAttribute($client, "baseUrl")
         );
-
     }
 
 
@@ -35,7 +34,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $stack = HandlerStack::create($mock);
         $stack->push($history);
         $http_client = new Client(['handler' => $stack]);
-        $client = new GenieBusinessConnect\Client('foo' , 'bar');
+        $client = new GenieBusinessConnect\Client('foo', 'bar');
         $client->setClient($http_client);
 
         $client->transactions->create([

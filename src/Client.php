@@ -1,5 +1,5 @@
 <?php
-
+// src\Client.php
 namespace GenieBusinessConnect;
 
 use GuzzleHttp\Client as GuzzleClient;
@@ -104,8 +104,7 @@ class Client
      */
     private function handleResponse(Response $response)
     {
-        $stream = \GuzzleHttp\Psr7\stream_for($response->getBody());
-        $data = json_decode($stream);
+        $data = json_decode($response->getBody()->getContents());
 
         return $data;
     }
@@ -122,7 +121,7 @@ class Client
         $json['appVersion'] = self::APP_VERSION;
         $json['signMethod'] = self::SIGN_METHOD;
 
-        $response = $this->httpClient->request('POST', $this->buildBaseUrl().$endpoint, ['json' => $json]);
+        $response = $this->httpClient->request('POST', $this->buildBaseUrl() . $endpoint, ['json' => $json]);
         return $this->handleResponse($response);
     }
 
@@ -135,7 +134,7 @@ class Client
     {
         $response = $this->httpClient->request(
             'GET',
-            $this->applyPagination($this->buildBaseUrl().$endpoint, $pagination)
+            $this->applyPagination($this->buildBaseUrl() . $endpoint, $pagination)
         );
 
         return $this->handleResponse($response);
@@ -149,7 +148,7 @@ class Client
     private function applyPagination(string $url, array $pagination)
     {
         if (count($pagination)) {
-            return $url.'?'.http_build_query($this->cleanPagination($pagination));
+            return $url . '?' . http_build_query($this->cleanPagination($pagination));
         }
 
         return $url;

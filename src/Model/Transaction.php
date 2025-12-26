@@ -1,4 +1,5 @@
 <?php
+//src\Model\Transaction.php
 namespace GenieBusinessConnect\Model;
 
 use GenieBusinessConnect\Options\Expires;
@@ -208,15 +209,15 @@ class Transaction
         }
 
         if (array_key_exists('validForHours', $json)) {
-            
-            if((int) $json['validForHours'] < 1 || (int) $json['validForHours'] > 2160) {
+
+            if ((int) $json['validForHours'] < 1 || (int) $json['validForHours'] > 2160) {
                 throw new \InvalidArgumentException('The minimum validity is 1 hour
                  and the maximum validity is 90 days');
             }
 
             $this->expires = (new Expires(new \DateTime()))->getExpiryDateAsIsoString($json['validForHours']);
         }
-        
+
         return $this;
     }
 }
